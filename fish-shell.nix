@@ -79,6 +79,17 @@
     '';
   };
 
+  programs.autojump = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+ 
+  programs.pay-respects = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+
   xdg.configFile."fish/conf.d/99-bobthefish.fish".text = ''
     set -l bob "${pkgs.fishPlugins.bobthefish}"
     set -g fish_function_path "$bob/share/fish/vendor_functions.d" $fish_function_path
