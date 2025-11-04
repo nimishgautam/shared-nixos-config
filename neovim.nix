@@ -28,7 +28,7 @@
     ];
 
     # Point Neovim at the single-file config
-    extraLuaConfig = builtins.readFile ../home/init-nix-nvim.lua;
+    extraLuaConfig = builtins.readFile ./nvim/init-nix-nvim.lua;
   };
 
   # Additional tools needed by neovim plugins
