@@ -16,6 +16,6 @@ pkgs: with pkgs; [
   # useful, but not referenced by fish
   lazygit      # terminal UI for git
   autojump     # for jump (j)
-  thefuck      # command correction
+  pay-respects      # command correction
 ]
 
