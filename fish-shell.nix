@@ -89,6 +89,10 @@
     enableFishIntegration = true;
   };
 
+  programs.fzf = {
+      enable = true;
+      enableFishIntegration = true;
+  };
 
   xdg.configFile."fish/conf.d/99-bobthefish.fish".text = ''
     set -l bob "${pkgs.fishPlugins.bobthefish}"
