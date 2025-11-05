@@ -61,7 +61,51 @@ map('n','<CR>',function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys,true,false,true),'n',false)
 end)
 
+-- ============== f/t/F/T multiline ==========
 
+local function find_char_multiline(char, direction, till)
+  local start_pos = vim.fn.getpos('.')
+  local flags = direction == 'forward' and 'W' or 'bW'
+  
+  -- Search for the character
+  local result = vim.fn.search('\\V' .. vim.fn.escape(char, '\\'), flags)
+  
+  if result == 0 then
+    -- Character not found, restore cursor position
+    vim.fn.setpos('.', start_pos)
+    return
+  end
+  
+  -- If this is 't' or 'T', adjust position by one character
+  if till then
+    if direction == 'forward' then
+      vim.cmd('normal! h')
+    else
+      vim.cmd('normal! l')
+    end
+  end
+end
+
+-- Set up the mappings
+vim.keymap.set({'n', 'x', 'o'}, 'f', function()
+  local char = vim.fn.getcharstr()
+  find_char_multiline(char, 'forward', false)
+end, { desc = 'Find char forward (multiline)' })
+
+vim.keymap.set({'n', 'x', 'o'}, 'F', function()
+  local char = vim.fn.getcharstr()
+  find_char_multiline(char, 'backward', false)
+end, { desc = 'Find char backward (multiline)' })
+
+vim.keymap.set({'n', 'x', 'o'}, 't', function()
+  local char = vim.fn.getcharstr()
+  find_char_multiline(char, 'forward', true)
+end, { desc = 'Till char forward (multiline)' })
+
+vim.keymap.set({'n', 'x', 'o'}, 'T', function()
+  local char = vim.fn.getcharstr()
+  find_char_multiline(char, 'backward', true)
+end, { desc = 'Till char backward (multiline)' })
 
 -- ============== colorscheme ==========
 pcall(vim.cmd, "colorscheme catppuccin")
@@ -152,7 +196,8 @@ end)
 
 -- leap
 pcall(function()
-  require("leap").add_default_mappings()
+  require("leap")
+  vim.keymap.set({ "n", "x" }, "s", "<Plug>(leap-anywhere)", { desc = "Leap (anywhere on screen)" })
 end)
 
 -- scrollbar
