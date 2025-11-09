@@ -12,7 +12,7 @@
       ls = "eza --group-directories-first --icons";
       man = "tldr";
       tree = "tre";
-      grep = "rg";
+      #grep = "rg"; #too many conflicts
     };
     functions = { 
       cl = {
