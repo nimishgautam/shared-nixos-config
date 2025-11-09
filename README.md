@@ -13,7 +13,7 @@ This directory contains portable Nix configuration modules that can be used acro
 ### 2. `enhanced-cli.nix`
 - Modern replacements for traditional Unix utilities:
   - `bat` (cat), `eza` (ls), `duf` (df), `dust` (du), `bottom` (top/htop)
-  - `delta` (diff), `ripgrep` (grep), `tre` (tree), `tldr` (man)
+  - `delta` (diff), `ripgrep` (not as grep b/c the syntax conflicts in baseline scripts too much), `tre` (tree), `tldr` (man)
 - Essential tools: git, fzf, lazygit, xclip
 - Designed to work with the fish shell aliases
 
